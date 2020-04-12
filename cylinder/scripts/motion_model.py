@@ -60,7 +60,7 @@ class HumanMotionModel:
         
         try:
             set_model_state = rospy.ServiceProxy('gazebo/set_model_state', SetModelState)
-            set_model_state(self.model_name, 'world')
+            set_model_state(x)
     #        return resp1.pose
         except rospy.ServiceException:
             print("Service call failed")
@@ -75,5 +75,6 @@ class HumanMotionModel:
 
 if __name__ == '__main__':
     hmm = HumanMotionModel('cylinder', 0, 0, 0)
+    hmm.walk()
     # listener()
     
