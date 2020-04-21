@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="cylinder" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:property name="humanRadius" value="0.3"/>
+  <xacro:property name="humanRadius" value="0.1"/>
   <xacro:property name="humanHeight" value="1.7"/>
   <xacro:property name="humanMass" value="100"/>
   <!-- <xacro:property name="initialPosX" value="1"/> -->
@@ -10,6 +10,7 @@
   <!-- <xacro:include filename="$(find cylinder)/urdf/cylinder.gazebo" /> -->
   <xacro:include filename="$(find cylinder)/urdf/materials.xacro" />
   <xacro:include filename="$(find cylinder)/urdf/macros.xacro" />
+
 
 
 
@@ -48,7 +49,7 @@
       <geometry>
         <cylinder radius="${humanRadius}" length="${humanHeight}"/>
       </geometry>
-      <material name="orange"/>
+      <material name="green"/>
     </visual>
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -58,7 +59,7 @@
   </link>
 
   <gazebo reference="human">
-    <material>Gazebo/Orange</material>
+    <material>Gazebo/Green</material>
   </gazebo>
 
 

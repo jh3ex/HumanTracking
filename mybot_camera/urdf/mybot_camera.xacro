@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot name="camera" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="PI" value="3.1415926535897931"/>
+
+  <xacro:property name="cameraPos" value="0"/>
+  <!-- <xacro:property name="rodPos" value="1"/> -->
+
+  <xacro:property name="cameraSize" value="0.05"/>
+  <xacro:property name="cameraMass" value="0.1"/>
+
+<!--  -->
+  <xacro:include filename="$(find mybot_description)/urdf/materials.xacro" />
+  <xacro:include filename="$(find mybot_description)/urdf/macros.xacro" />
+  <xacro:include filename="$(find mybot_description)/urdf/camera.gazebo" />
+
+  <!-- <static>true</static> -->
+
+
+
+  <link name="footprint"/>
+
+  <joint name="camera_joint" type="fixed">
+    <parent link="footprint"/>
+    <child link="camera"/>
+  </joint>
+
+  <link name="camera">
+    <!-- <pose>0 0 0.5 0 0 0</pose> -->
+    <collision>
+      <origin xyz="0 0 ${cameraPos}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${cameraSize} ${cameraSize} ${cameraSize}"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 ${cameraPos}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${cameraSize} ${cameraSize} ${cameraSize}"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+
+    <inertial>
+      <mass value="${cameraMass}"/>
+      <origin xyz="0 0 ${cameraPos}" rpy="0 0 0"/>
+      <xacro:box_inertia m="${cameraMass}" x="${cameraSize}" y="${cameraSize}" z="${cameraSize}" />
+    </inertial>
+  </link>
+
+</robot>

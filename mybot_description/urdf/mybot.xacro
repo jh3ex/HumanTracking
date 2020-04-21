@@ -7,7 +7,8 @@
   <xacro:property name="chassisWidth" value="0.2"/>
   <xacro:property name="chassisMass" value="50"/>
 
-  <xacro:property name="cameraPos" value="0.1"/>
+  <xacro:property name="cameraPos" value="0.2"/>
+  <xacro:property name="cameraPosX" value="0.2"/>
 
   <xacro:property name="casterRadius" value="0.05"/>
   <xacro:property name="casterMass" value="5"/>
@@ -23,13 +24,16 @@
   <xacro:include filename="$(find mybot_description)/urdf/mybot.gazebo" />
   <xacro:include filename="$(find mybot_description)/urdf/materials.xacro" />
   <xacro:include filename="$(find mybot_description)/urdf/macros.xacro" />
+  <xacro:include filename="$(find mybot_description)/urdf/camera.gazebo" />
+
 
   <gazebo reference="chassis">
     <material>Gazebo/Orange</material>
   </gazebo>
+
   <gazebo reference="caster_wheel">
-    <mu1>0.0</mu1>
-    <mu2>0.0</mu2>
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
     <material>Gazebo/Red</material>
   </gazebo>
 
@@ -64,7 +68,7 @@
   </link>
 
 
-  <joint name="joint1" type="fixed">
+  <joint name="fixed" type="fixed">
     <parent link="chassis"/>
     <child link="caster_wheel"/>
   </joint>
@@ -101,16 +105,15 @@
   </joint>
 
   <link name="camera">
-    <!-- pose value="0 1 0 0 -0 0" relative_to="" -->
     <collision>
-      <origin xyz="0 0 ${cameraPos}" rpy="0 0 0"/>
+      <origin xyz="${cameraPosX} 0 ${cameraPos}" rpy="0 0 0"/>
       <geometry>
         <box size="${cameraSize} ${cameraSize} ${cameraSize}"/>
       </geometry>
     </collision>
 
     <visual>
-      <origin xyz="0 0 ${cameraPos}" rpy="0 0 0"/>
+      <origin xyz="${cameraPosX} 0 ${cameraPos}" rpy="0 0 0"/>
       <geometry>
         <box size="${cameraSize} ${cameraSize} ${cameraSize}"/>
       </geometry>
@@ -119,7 +122,7 @@
 
     <inertial>
       <mass value="${cameraMass}"/>
-      <origin xyz="0 0 ${cameraPos}" rpy="0 0 0"/>
+      <origin xyz="${cameraPosX} 0 ${cameraPos}" rpy="0 0 0"/>
       <xacro:box_inertia m="${cameraMass}" x="${cameraSize}" y="${cameraSize}" z="${cameraSize}" />
     </inertial>
   </link>

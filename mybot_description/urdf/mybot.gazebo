@@ -35,11 +35,12 @@
     </plugin>
   </gazebo>
 
-  <gazebo reference="camera">
+  <!-- <gazebo reference="camera">
     <material>Gazebo/Blue</material>
     <sensor type="camera" name="camera1">
       <update_rate>30.0</update_rate>
       <camera name="head">
+        <pose>0 0 0.2 0 0 0</pose>
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
           <width>800</width>
@@ -66,5 +67,5 @@
         <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
-   </gazebo>
+  </gazebo> -->
 </robot>

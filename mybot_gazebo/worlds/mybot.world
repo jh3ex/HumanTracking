@@ -8,7 +8,7 @@
 		<uri>model://ground_plane</uri>
 	</include>
 	<!-- <include >
-		<uri>model://willowgarage</uri>
+		<uri>model://mud_bitmask</uri>
 	</include> -->
 </world>
 </sdf>
