@@ -19,7 +19,7 @@
   <xacro:property name="wheelMass" value="5"/>
 
   <xacro:property name="cameraSize" value="0.05"/>
-  <xacro:property name="cameraMass" value="0.1"/>
+  <xacro:property name="cameraMass" value="0.01"/>
 
   <xacro:include filename="$(find mybot_description)/urdf/mybot.gazebo" />
   <xacro:include filename="$(find mybot_description)/urdf/materials.xacro" />

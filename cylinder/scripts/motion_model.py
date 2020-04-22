@@ -3,6 +3,12 @@
 Human motion control ros node
 
 Jing Huang
+
+Subscribe:
+    'gazebo/get_model_state'
+
+
+
 """
 
 import rospy
@@ -68,8 +74,6 @@ class HumanMotion_Gazebo:
             rate.sleep()
 
 
-
-
     def get_human_state(self):
         rospy.wait_for_service('gazebo/get_model_state')
 
@@ -125,14 +129,16 @@ class ProbMotionModel:
 if __name__ == '__main__':
 
     # Motion model parameter
-    v_mu = 0.1
-    v_sigma = 0.012
+    rate = 5
+
+    v_mu = 0.5/rate
+    v_sigma = 0.012/rate
     theta_dot_mu = 0
-    theta_dot_sigma = 0.02
-    trans_prob = np.array([[0.5, 0.5], [0.1, 0.9]])
+    theta_dot_sigma = 0.2/rate
+    trans_prob = np.array([[0.3, 0.7], [0.01, 0.99]])
 
     pmm = ProbMotionModel(v_mu, v_sigma, theta_dot_mu, theta_dot_sigma, trans_prob)
 
     hm_gazebo = HumanMotion_Gazebo('cylinder', pmm)
-    hm_gazebo.walk(0.5)
+    hm_gazebo.walk(rate)
     # listener()
